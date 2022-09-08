@@ -72,27 +72,9 @@ uint8_t*** convolution_2D(uint8_t*** ifmap, uint8_t**** filter, int input_channe
     uint8_t*** padded = init_3D_tensor(input_channel, Height + 2 * padding_size
         , Weight + 2 * padding_size);
 
-    uint8_t*** final = init_3D_tensor(output_channel, ((Height - filter_size + 1) / stride_size) + 2 * padding_size
-        , ((Weight - filter_size + 1) / stride_size) + 2 * padding_size);
+    uint8_t*** final = init_3D_tensor(output_channel, ((Height - filter_size + 2 * padding_size) / stride_size) + 1
+        , ((Weight - filter_size + 2 * padding_size) / stride_size) + 1);
 
-
-
-    /* int size tensor define
-    int x = output_channel;
-    int y = ((Height - filter_size + 1) / stride_size) + 2 * padding_size;
-    int z = ((Weight - filter_size + 1) / stride_size) + 2 * padding_size;
-    int*** final;
-    final = (int***)malloc(sizeof(int**) * x);
-    for (int i = 0; i < x; i++) {
-        final[i] = (int**)malloc(sizeof(int*) * y);
-        for (int j = 0; j < y; j++) {
-            final[i][j] = (int*)malloc(sizeof(int) * z);
-            for (int k = 0; k < z; k++) {
-                final[i][j][k] = 0;
-            }
-        }
-    }
-    */
 
     //패딩된 매트릭스만들기
     for (int i = 0; i < input_channel; i++) {
@@ -121,8 +103,8 @@ uint8_t*** convolution_2D(uint8_t*** ifmap, uint8_t**** filter, int input_channe
 
     // 프린트작업
     for (int i = 0; i < output_channel; i++) {
-        for (int j = 0; j < ((Height - filter_size + 1) / stride_size) + 2 * padding_size; j++) {
-            for (int l = 0; l < ((Weight - filter_size + 1) / stride_size) + 2 * padding_size; l++) {
+        for (int j = 0; j < ((Height - filter_size + 2 * padding_size) / stride_size) + 1; j++) {
+            for (int l = 0; l < ((Weight - filter_size + 2 * padding_size) / stride_size) + 1; l++) {
                 fprintf(fp, "%-3u ", final[i][j][l]);
             }
             fprintf(fp, "\n");
