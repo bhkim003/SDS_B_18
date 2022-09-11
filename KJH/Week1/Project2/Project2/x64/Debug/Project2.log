@@ -1,0 +1,5 @@
+﻿  function.c
+C:\Users\김준환\Desktop\function.c(3,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'function.h': No such file or directory
+  main.c
+C:\Users\김준환\Desktop\main.c(8,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'parameter.h': No such file or directory
+  코드를 생성하고 있습니다...
