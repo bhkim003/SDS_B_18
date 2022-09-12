@@ -5,7 +5,6 @@
 #include <stdint.h>
 #include <time.h>
 
-
 uint8_t*** init_3D_tensor(int x, int y, int z) {
     uint8_t*** ret;
     ret = (uint8_t***)malloc(sizeof(uint8_t**) * x);

@@ -17,11 +17,17 @@ int main() {
     fp_ifmap = fopen("ifmap.txt","w");
     fp_filter = fopen("filter.txt","w");
     fp_ofmap = fopen("ofmap.txt","w");
+   
 
     set_3D_tensor(ifmap, C, H, W, fp_ifmap);
     set_4D_tensor(filter,Cout,C,K,K,fp_filter);
 
+    clock_t start, end; //시간측정을 위한 변수 선언
+    start = clock();    //시작시간 삽입
+    
     uint8_t*** ofmap = convolution_2D(ifmap,filter,C,H,W,Cout,K,STRIDE,P,fp_ofmap);
+    end = clock();       //끝난시간 삽입
+    printf("[time : %f]\n", (float)(end - start) / CLOCKS_PER_SEC); //시간측정한거 출력
 
     fclose(fp_ifmap);
     fclose(fp_filter);
