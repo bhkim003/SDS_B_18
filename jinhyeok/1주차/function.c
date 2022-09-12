@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <time.h>
 
+
 uint8_t*** init_3D_tensor(int x, int y, int z) {
     uint8_t*** ret;
     ret = (uint8_t***)malloc(sizeof(uint8_t**) * x);
@@ -68,6 +69,10 @@ void set_4D_tensor(uint8_t**** tensor, int x, int y, int z, int w, FILE* fp) {
 uint8_t*** convolution_2D(uint8_t*** ifmap, uint8_t**** filter, int input_channel,
     int Height, int Weight, int output_channel, int filter_size, int stride_size, int padding_size, FILE* fp) {
 
+    // time
+    clock_t start, end;
+    start = clock();
+    
     // initial padded input
     int padded_Hsize = Height + 2 * padding_size;
     int padded_Wsize = Weight + 2 * padding_size;
@@ -113,6 +118,9 @@ uint8_t*** convolution_2D(uint8_t*** ifmap, uint8_t**** filter, int input_channe
         }
         fprintf(fp, "\n");
     }
+
+    end = clock();
+    printf("[time : %f]\n", (float)(end - start) / CLOCKS_PER_SEC);
 
     return final;
 }
