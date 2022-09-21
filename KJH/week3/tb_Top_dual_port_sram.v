@@ -106,6 +106,20 @@ module tb_Top_dual_port_sram;
         addr_in_0 = 0;
         rd_en = 0;
         port_en_0 = 0;
+
+        //Call the address 01's data.
+        @(posedge clk);
+        @(posedge clk); 
+        #(`DELTA)
+        addr_in_0 = 'd01;
+        rd_en = 1'b1;
+        port_en_0 = 1'b1;
+
+        @(posedge clk); 
+        #(`DELTA)
+        addr_in_0 = 0;
+        rd_en = 0;
+        port_en_0 = 0;
     end
 
 
