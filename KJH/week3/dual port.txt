@@ -1,0 +1,9 @@
+port 2개,
+ 
+port 0는  read전용이며, rd_en와 port_en_0이 1이라면 값을 읽는다
+읽어온 값은 data_out_0를 통하여 나간다.
+
+port 1는 write 전용이며, wr_en와 port_en_1이 1이라면 data_in
+(주어질 값)을 받아온다.
+
+read,write는 동시에 이루어진다.
