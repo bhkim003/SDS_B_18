@@ -1,5 +1,5 @@
 module dual_port_sram #(
-        parameter           RAM_DATA_WIDTH          = 272,
+        parameter           RAM_DATA_WIDTH          = 16,
         parameter           RAM_ADDR_WIDTH          = 8,
         parameter           RAM_DEPTH               = 256
     )

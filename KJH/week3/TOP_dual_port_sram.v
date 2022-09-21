@@ -1,5 +1,5 @@
 module TOP_dual_port_sram # ( 
-        parameter           RAM_DATA_WIDTH          = 272,
+        parameter           RAM_DATA_WIDTH          = 16,
         parameter           RAM_ADDR_WIDTH          = 8,
         parameter           RAM_DEPTH               = 256
     )
@@ -43,6 +43,7 @@ module TOP_dual_port_sram # (
         .data_out_0     ( data_out       )
     );
 
+    //check address is equal
     always @(*) begin
         if(addr_in_0 == addr_in_1) begin
             addr_check_out = data_in; 
@@ -51,6 +52,7 @@ module TOP_dual_port_sram # (
         end
     end 
 
+    //check sram signal is on
     always @(*) begin
         if ((port_en_0 && port_en_1 && rd_en && wr_en) == 1) begin
             Top_data_out_0_n = addr_check_out;
