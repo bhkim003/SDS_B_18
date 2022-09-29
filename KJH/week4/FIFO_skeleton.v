@@ -44,12 +44,11 @@ module FIFO #(
     end
     
     // 2-3) Read activation
-    assign rdata_o = mem[rdptr[FIFO_DEPTH_LG2-1:0]]
+    assign rdata_o = mem[rdptr[FIFO_DEPTH_LG2-1:0]];
     // 3. FIFO state signal 
     
     // 3-1) full signal
     
     // 3-2) empty signal
-    assign 
 
 endmodule
