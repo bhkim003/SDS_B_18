@@ -12,6 +12,7 @@ module Counter #(
     input en,
     
     // output
+    output en_o,
     output [CNT_WIDTH-1:0] cnt_o
     );
     
@@ -40,5 +41,6 @@ module Counter #(
     
     // 3. output assign statement
     assign cnt_o = cnt;
+    assign en_o = en;
     
 endmodule
