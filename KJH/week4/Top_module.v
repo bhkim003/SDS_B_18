@@ -22,7 +22,7 @@ module Top_module # (
         .CNT_WIDTH ( DWIDTH )
     )u_Counter(
         .clk   ( clk   ),
-        .rst_n ( rst_n ),
+        .rst_n ( reset_n ),
         .en    ( en    ),
         .en_o  (en_w   ),
         .cnt_o  (cnt_w )

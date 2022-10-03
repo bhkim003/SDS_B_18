@@ -37,7 +37,7 @@ module tb_Top_module;
         #(`DELTA)
         en = 1'b1;
 
-        repeat(4)
+        repeat(5)
             @(posedge clk);
 
         @(posedge clk); 
@@ -53,7 +53,7 @@ module tb_Top_module;
         #(`DELTA)
         acc_en = 1'b1;
 
-        repeat(4)
+        repeat(5)
             @(posedge clk);
 
         @(posedge clk); 
