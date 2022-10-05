@@ -13,8 +13,7 @@ module counter #(
     input en,
     
     // output
-    output [CNT_WIDTH-1:0] cnt_o,
-    output valid_o
+    output [CNT_WIDTH-1:0] cnt_o
     );
     
     // Local param
@@ -42,6 +41,5 @@ module counter #(
     
     // 3. output assign statement
     assign cnt_o = cnt;
-    assign valid_o = en;
     
 endmodule

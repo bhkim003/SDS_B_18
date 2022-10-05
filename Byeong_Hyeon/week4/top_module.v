@@ -16,16 +16,14 @@ module top_module
     output                      empty_o
 );
 
-wire valid_o_wren_i;
 wire [DATA_WIDTH-1 : 0] cnt_o_wdata_i;
 counter#(
     .CNT_WIDTH ( DATA_WIDTH )
 )u_counter(
     .clk   ( clk   ),
     .rst_n ( reset_n ),
-    .en    ( counter_go    ),
-    .cnt_o ( cnt_o_wdata_i ),
-    .valid_o  ( valid_o_wren_i  )
+    .en    ( counter_go && !full_o    ),
+    .cnt_o ( cnt_o_wdata_i )
 );
 
 wire [DATA_WIDTH -1 : 0] rdata_o_number_i;
@@ -35,7 +33,7 @@ FIFO#(
 )u_FIFO(
     .clk        ( clk        ),
     .rst_n      ( reset_n      ),
-    .wren_i     ( valid_o_wren_i     ),
+    .wren_i     (  counter_go && !full_o     ),
     .rden_i     (  acc_go && !empty_o    ),
     .wdata_i    ( cnt_o_wdata_i    ),
     .rdata_o    (   rdata_o_number_i  ),
