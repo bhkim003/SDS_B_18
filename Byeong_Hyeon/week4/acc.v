@@ -11,6 +11,7 @@ module acc_core
     input valid_i,
 
     output valid_o,
+    output pop,
     output [DWIDTH - 1 : 0] result_o
 );
 
@@ -34,7 +35,7 @@ module acc_core
     end
 
     always@(*) begin
-        if(valid_i) begin
+        if(pop) begin
             r_result_n = r_result + number_i;
         end else begin 
             r_result_n = r_result;
@@ -42,5 +43,6 @@ module acc_core
     end
 
     assign valid_o = r_valid;
+    assign pop = r_valid;
     assign result_o = r_result;
 endmodule

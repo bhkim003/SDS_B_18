@@ -28,6 +28,7 @@ counter#(
     .valid_o  ( valid_o_wren_i  )
 );
 
+wire pop_rden_i;
 wire [DATA_WIDTH -1 : 0] rdata_o_number_i;
 FIFO#(
     .DATA_WIDTH ( DATA_WIDTH ),
@@ -36,7 +37,7 @@ FIFO#(
     .clk        ( clk        ),
     .rst_n      ( reset_n      ),
     .wren_i     ( valid_o_wren_i     ),
-    .rden_i     (  acc_go && !empty_o    ),
+    .rden_i     (  pop_rden_i   ),
     .wdata_i    ( cnt_o_wdata_i    ),
     .rdata_o    (   rdata_o_number_i  ),
     .full_o     ( full_o     ),
@@ -52,8 +53,9 @@ acc_core#(
     .clk           ( clk           ),
     .reset_n       ( reset_n       ),
     .number_i      ( rdata_o_number_i      ),
-    .valid_i       ( acc_go && !empty_o       ),
+    .valid_i       ( acc_go   ),
     .valid_o       ( valid_o       ),
+    .pop           (    pop_rden_i     ),
     .result_o      ( result_o      )
 );
 
