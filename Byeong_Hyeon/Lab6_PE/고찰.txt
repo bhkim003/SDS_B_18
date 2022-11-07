@@ -1,0 +1,20 @@
+ifmap_i에서 1비트를 추가,
+weight_i에서 1비트를 추가,
+psum_i에서 1비트를 추가해서 input을 선언하면
+추가된 1비트를 en신호로 쓰면 input 포트 3개를 지울 수 있다.
+같은 맥락으로 wieght_en_o와 psum_en_o또한 2개를 줄일 수 있다.
+
+그렇다면 RTL내부 en 할당 always문 또한 줄일 수 있다.
+
+고민되는 점은 psum_en_o 값은 psum_r과 product_r을 더한 것인데
+psum_r같은 경우 psum_en_i에 종속이고 (레지스터에 저장되지만)
+product_r의 경우 ifmap_en_i와 weight_i에 종속인데 psum_en_o가 psun_en_i에만 종속인 것이
+의문점이다.
+
+psum_en_r   <= psum_en_i; 
+이것을 
+psum_en_r   <= psum_en_i && weight_i;
+으로 바꾸는 것도 생각해 보았다. 
+ifmap_en_i 같은 경우는 input을 한번 밀어넣어주고 ifmap_en_i값은 0으로 내려도 계속 
+사용한다는 스펙으로 알고있기에 같이 &&를 통해 묶어주지는 않았다.
+
